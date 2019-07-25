@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.main.item_phone.view.*
 
 class Customadapter(var context: Context, var arrphone: ArrayList<Phone>) :
     RecyclerView.Adapter<Customadapter.viewholder>() {
+    var itemclick: ((Phone) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholder {
 //        var layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
 //        var view: View = layoutInflater.inflate(R.layout.item_phone, parent, false)
@@ -21,14 +23,19 @@ class Customadapter(var context: Context, var arrphone: ArrayList<Phone>) :
     }
 
     override fun onBindViewHolder(holder: viewholder, position: Int) {
-       holder.tvname.text=arrphone.get(position).name
-       holder.image.setImageResource(arrphone.get(position).anh)
+        holder.tvname.text = arrphone.get(position).name
+        holder.image.setImageResource(arrphone.get(position).anh)
     }
 
-    class viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-            var tvname = itemView.tvTen
-            var image=itemView.imgAnh
+        var tvname = itemView.tvTen
+        var image = itemView.imgAnh
 
+        init {
+            itemView.setOnClickListener {
+                itemclick?.invoke(arrphone[adapterPosition])
+            }
+        }
     }
 }
