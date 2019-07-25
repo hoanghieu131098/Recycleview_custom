@@ -28,7 +28,7 @@
             android:layout_below="@+id/tv"
             android:background="@drawable/custom_background_buttonback"
             android:layout_centerInParent="true"
-            android:layout_margin="10dp"
+            android:layout_margin="11dp"
             android:text="Back"
             android:textColor="#ffffff"
             android:textSize="20sp"
